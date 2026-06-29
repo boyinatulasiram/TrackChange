@@ -29,6 +29,14 @@ const RepositorySchema = new Schema({
       ref: "Issue",
     },
   ],
+  commits: [
+    {
+      commitID: { type: String, required: true },
+      message: { type: String },
+      date: { type: String },
+      files: [{ type: String }]
+    }
+  ]
 },
 {
     timestamps: true,

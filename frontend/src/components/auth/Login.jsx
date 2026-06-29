@@ -1,21 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../authContext";
-
-import { PageHeader } from "@primer/react/drafts";
-import { Box, Button } from "@primer/react";
+import { MailIcon, LockIcon, GitBranchIcon, ChevronRightIcon } from "@primer/octicons-react";
 import "./auth.css";
 
-import logo from "../../assets/github-mark-white.svg";
-import { Link } from "react-router-dom";
-
 const Login = () => {
-  // useEffect(() => {
-  //   localStorage.removeItem("token");
-  //   localStorage.removeItem("userId");
-  //   setCurrentUser(null);
-  // });
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,12 +14,17 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      alert("Please fill in all fields!");
+      return;
+    }
+
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:8080/login", {
-        email: email,
-        password: password,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/login`,
+        { email, password }
+      );
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);
@@ -40,66 +35,95 @@ const Login = () => {
       window.location.href = "/";
     } catch (err) {
       console.error(err);
-      alert("Login Failed!");
+      alert("Login Failed! Please check your credentials.");
       setLoading(false);
     }
   };
 
   return (
-    <div className="login-wrapper">
-      <div className="login-logo-container">
-        <img className="logo-login" src={logo} alt="Logo" />
+    <div className="auth-split-container">
+      {/* Left Artwork Column */}
+      <div className="auth-artwork-col">
+        <div className="artwork-overlay"></div>
+        <div className="artwork-content">
+          <div className="artwork-logo">
+            <GitBranchIcon size={36} className="logo-icon-art" />
+            <h2>TrackChange</h2>
+          </div>
+          <h1>Track every commit.<br />Visualize every change.</h1>
+          <p>The first activity-first development visualization engine built for tracking repository momentum.</p>
+          
+          {/* Commit Network Illustration */}
+          <div className="network-illustration">
+            <div className="network-line main-branch"></div>
+            <div className="network-line feature-branch"></div>
+            <div className="network-node node-red pt-1" style={{ left: "10%", top: "50%" }}>
+              <span className="node-tooltip">Init</span>
+            </div>
+            <div className="network-node node-teal pt-2" style={{ left: "30%", top: "50%" }}>
+              <span className="node-tooltip">Fix</span>
+            </div>
+            <div className="network-node node-white pt-3" style={{ left: "45%", top: "35%" }}>
+              <span className="node-tooltip">Feature</span>
+            </div>
+            <div className="network-node node-teal pt-4" style={{ left: "65%", top: "35%" }}>
+              <span className="node-tooltip">Refactor</span>
+            </div>
+            <div className="network-node node-red pt-5" style={{ left: "85%", top: "50%" }}>
+              <span className="node-tooltip">Merge</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="login-box-wrapper">
-        <div className="login-heading">
-          <Box sx={{ padding: 1 }}>
-            <PageHeader>
-              <PageHeader.TitleArea variant="large">
-                <PageHeader.Title>Sign In</PageHeader.Title>
-              </PageHeader.TitleArea>
-            </PageHeader>
-          </Box>
-        </div>
-        <div className="login-box">
-          <div>
-            <label className="label">Email address</label>
-            <input
-              autoComplete="off"
-              name="Email"
-              id="Email"
-              className="input"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="div">
-            <label className="label">Password</label>
-            <input
-              autoComplete="off"
-              name="Password"
-              id="Password"
-              className="input"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+      {/* Right Form Column */}
+      <div className="auth-form-col">
+        <div className="auth-glass-card">
+          <div className="auth-header">
+            <h2>Welcome Back</h2>
+            <p>Continue tracking your development journey.</p>
           </div>
 
-          <Button
-            variant="primary"
-            className="login-btn"
-            disabled={loading}
-            onClick={handleLogin}
-          >
-            {loading ? "Loading..." : "Login"}
-          </Button>
-        </div>
-        <div className="pass-box">
-          <p>
-            New to GitHub? <Link to="/signup">Create an account</Link>
-          </p>
+          <form onSubmit={handleLogin} className="auth-form">
+            {/* Email field */}
+            <div className="floating-input-group">
+              <MailIcon size={18} className="input-icon" />
+              <input
+                id="Email"
+                type="email"
+                className="auth-input-field"
+                placeholder=" "
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <label htmlFor="Email">Email address</label>
+            </div>
+
+            {/* Password field */}
+            <div className="floating-input-group">
+              <LockIcon size={18} className="input-icon" />
+              <input
+                id="Password"
+                type="password"
+                className="auth-input-field"
+                placeholder=" "
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <label htmlFor="Password">Password</label>
+            </div>
+
+            <button type="submit" className="btn-primary auth-submit-btn" disabled={loading}>
+              {loading ? "Signing In..." : "Sign In"}
+              <ChevronRightIcon size={16} className="btn-chevron" />
+            </button>
+          </form>
+
+          <div className="auth-footer">
+            <p>New to TrackChange? <Link to="/signup" className="auth-link">Create Account</Link></p>
+          </div>
         </div>
       </div>
     </div>

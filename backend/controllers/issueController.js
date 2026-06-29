@@ -16,6 +16,13 @@ async function createIssue(req, res) {
 
     await issue.save();
 
+    // Link issue to repository
+    const repository = await Repository.findById(id);
+    if (repository) {
+      repository.issues.push(issue._id);
+      await repository.save();
+    }
+
     res.status(201).json(issue);
   } catch (err) {
     console.error("Error during issue creation : ", err.message);
@@ -39,7 +46,7 @@ async function updateIssueById(req, res) {
 
     await issue.save();
 
-    res.json(issue, { message: "Issue updated" });
+    res.json({ issue, message: "Issue updated" });
   } catch (err) {
     console.error("Error during issue updation : ", err.message);
     res.status(500).send("Server error");
@@ -50,11 +57,19 @@ async function deleteIssueById(req, res) {
   const { id } = req.params;
 
   try {
-    const issue = Issue.findByIdAndDelete(id);
+    const issue = await Issue.findByIdAndDelete(id);
 
     if (!issue) {
       return res.status(404).json({ error: "Issue not found!" });
     }
+
+    // Unlink issue from repository
+    if (issue.repository) {
+      await Repository.findByIdAndUpdate(issue.repository, {
+        $pull: { issues: id }
+      });
+    }
+
     res.json({ message: "Issue deleted" });
   } catch (err) {
     console.error("Error during issue deletion : ", err.message);
@@ -66,7 +81,7 @@ async function getAllIssues(req, res) {
   const { id } = req.params;
 
   try {
-    const issues = Issue.find({ repository: id });
+    const issues = await Issue.find({ repository: id });
 
     if (!issues) {
       return res.status(404).json({ error: "Issues not found!" });

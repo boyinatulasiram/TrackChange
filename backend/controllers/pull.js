@@ -32,9 +32,8 @@ async function pullRepo() {
 
       const fileContent = await s3.getObject(params).promise();
       await fs.writeFile(path.join(repoPath, key), fileContent.Body);
-
-      console.log("All commits pulled from S3.");
     }
+    console.log("All commits pulled from S3.");
   } catch (err) {
     console.error("Unable to pull : ", err);
   }

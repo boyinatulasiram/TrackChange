@@ -20,9 +20,23 @@ async function commitRepo(message) {
       );
     }
 
+    // Read config to see if a remote repo is linked
+    let repoName = "";
+    try {
+      const configContent = await fs.readFile(path.join(repoPath, "config.json"), "utf8");
+      const config = JSON.parse(configContent);
+      repoName = config.repo || "";
+    } catch (e) {
+      // Ignored
+    }
+
     await fs.writeFile(
       path.join(commitDir, "commit.json"),
-      JSON.stringify({ message, date: new Date().toISOString() })
+      JSON.stringify({ 
+        message, 
+        date: new Date().toISOString(),
+        repoName: repoName
+      }, null, 2)
     );
 
     console.log(`Commit ${commitID} created with message: ${message}`);

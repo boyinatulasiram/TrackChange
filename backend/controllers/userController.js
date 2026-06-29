@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 var ObjectId = require("mongodb").ObjectId;
 
 dotenv.config();
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI || process.env.MONGO_URL;
 
 let client;
 
@@ -26,7 +26,11 @@ async function signup(req, res) {
     const db = client.db("githubclone");
     const usersCollection = db.collection("users");
 
-    const user = await usersCollection.findOne({ username });
+    const normalizedEmail = email ? email.toLowerCase().trim() : "";
+
+    const user = await usersCollection.findOne({
+      $or: [{ username }, { email: normalizedEmail }],
+    });
     if (user) {
       return res.status(400).json({ message: "User already exists!" });
     }
@@ -37,7 +41,7 @@ async function signup(req, res) {
     const newUser = {
       username,
       password: hashedPassword,
-      email,
+      email: normalizedEmail,
       repositories: [],
       followedUsers: [],
       starRepos: [],
@@ -46,11 +50,11 @@ async function signup(req, res) {
     const result = await usersCollection.insertOne(newUser);
 
     const token = jwt.sign(
-      { id: result.insertId },
+      { id: result.insertedId },
       process.env.JWT_SECRET_KEY,
       { expiresIn: "1h" }
     );
-    res.json({ token, userId: result.insertId });
+    res.json({ token, userId: result.insertedId });
   } catch (err) {
     console.error("Error during signup : ", err.message);
     res.status(500).send("Server error");
@@ -64,7 +68,8 @@ async function login(req, res) {
     const db = client.db("githubclone");
     const usersCollection = db.collection("users");
 
-    const user = await usersCollection.findOne({ email });
+    const normalizedEmail = email ? email.toLowerCase().trim() : "";
+    const user = await usersCollection.findOne({ email: normalizedEmail });
     if (!user) {
       return res.status(400).json({ message: "Invalid credentials!" });
     }
@@ -130,7 +135,10 @@ async function updateUserProfile(req, res) {
     const db = client.db("githubclone");
     const usersCollection = db.collection("users");
 
-    let updateFields = { email };
+    let updateFields = {};
+    if (email) {
+      updateFields.email = email.toLowerCase().trim();
+    }
     if (password) {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);

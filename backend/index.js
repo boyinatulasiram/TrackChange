@@ -18,9 +18,33 @@ const { commitRepo } = require("./controllers/commit");
 const { pushRepo } = require("./controllers/push");
 const { pullRepo } = require("./controllers/pull");
 const { revertRepo } = require("./controllers/revert");
+const { configRepo, remoteRepo } = require("./controllers/config");
 yargs(hideBin(process.argv))
   .command("start", "Starts a new server", {}, startServer)
   .command("init", "Initialise a new repository", {}, initRepo)
+  .command(
+    "config <key> <value>",
+    "Configure settings (e.g. config email user@example.com)",
+    (yargs) => {
+      yargs.positional("key", { type: "string" })
+           .positional("value", { type: "string" });
+    },
+    (argv) => {
+      configRepo(argv.key, argv.value);
+    }
+  )
+  .command(
+    "remote <action> <name> [url]",
+    "Manage remote repositories (e.g. remote add origin repoName)",
+    (yargs) => {
+      yargs.positional("action", { type: "string" })
+           .positional("name", { type: "string" })
+           .positional("url", { type: "string" });
+    },
+    (argv) => {
+      remoteRepo(argv.action, argv.name, argv.url);
+    }
+  )
   .command(
     "add <file>",
     "Add a file to the repository",
@@ -72,7 +96,7 @@ function startServer() {
   app.use(bodyParser.json());
   app.use(express.json());
 
-  const mongoURI = process.env.MONGO_URL;
+  const mongoURI = process.env.MONGO_URL || process.env.MONGODB_URI;
 
   mongoose
     .connect(mongoURI)

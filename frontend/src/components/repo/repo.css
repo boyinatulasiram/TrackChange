@@ -1,0 +1,1139 @@
+/* repo.css - Premium styling for TrackChange Repo views */
+
+/* Loading & Error Screens */
+.repo-loading-screen, .repo-error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 20px;
+  color: var(--deep-navy);
+  font-family: var(--font-heading);
+}
+
+.error-card {
+  text-align: center;
+  max-width: 500px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.error-card-icon {
+  color: var(--primary-red);
+}
+
+.error-card h3 {
+  font-size: 22px;
+  color: var(--deep-navy);
+}
+
+.error-card p {
+  color: var(--slate-blue);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+/* Create Repository - Split Layout */
+.create-repo-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.create-repo-form-panel {
+  padding: 40px;
+}
+
+.panel-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(29, 53, 87, 0.08);
+  padding-bottom: 20px;
+}
+
+.header-icon-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background-color: rgba(69, 123, 157, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-icon-primary {
+  color: var(--slate-blue);
+}
+
+.panel-header h2 {
+  font-size: 24px;
+  color: var(--deep-navy);
+}
+
+.subtitle-text {
+  font-size: 14px;
+  color: var(--slate-blue);
+  margin-top: 4px;
+}
+
+.repo-form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.input-with-prefix {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(29, 53, 87, 0.12);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.input-with-prefix:focus-within {
+  border-color: var(--slate-blue);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(168, 218, 220, 0.25);
+}
+
+.prefix-owner {
+  padding: 0 16px;
+  background-color: rgba(29, 53, 87, 0.05);
+  color: var(--slate-blue);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 14px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid rgba(29, 53, 87, 0.08);
+}
+
+.text-field {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  height: 46px;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.form-textarea.text-field {
+  height: auto;
+  min-height: 100px;
+  padding: 12px 16px;
+}
+
+.label-optional {
+  color: var(--slate-blue);
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.field-hint {
+  font-size: 11px;
+  color: var(--slate-blue);
+}
+
+/* Segmented Visibility Selector */
+.segmented-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.segmented-option {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border: 1.5px solid rgba(29, 53, 87, 0.1);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.2s ease;
+}
+
+.segmented-option:hover {
+  background: var(--white);
+  border-color: var(--accent-teal);
+}
+
+.selector-icon {
+  color: var(--slate-blue);
+  margin-top: 2px;
+}
+
+.option-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--deep-navy);
+  font-size: 14px;
+}
+
+.option-desc {
+  font-size: 11px;
+  color: var(--slate-blue);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.active-public {
+  border-color: var(--accent-teal);
+  background: rgba(168, 218, 220, 0.15);
+}
+
+.active-public .selector-icon {
+  color: var(--slate-blue);
+}
+
+.active-private {
+  border-color: var(--primary-red);
+  background: rgba(230, 57, 70, 0.05);
+}
+
+.active-private .selector-icon {
+  color: var(--primary-red);
+}
+
+.form-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(230, 57, 70, 0.08);
+  border: 1px solid rgba(230, 57, 70, 0.15);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  color: var(--primary-red);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.error-banner-icon {
+  flex-shrink: 0;
+}
+
+.action-buttons-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Right Side Preview Panel */
+.create-repo-preview-panel {
+  position: relative;
+}
+
+.preview-sticky-wrapper {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.preview-label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--slate-blue);
+  margin-left: 10px;
+}
+
+.preview-card-glow {
+  border: 2px dashed var(--accent-teal) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.repo-card-insights {
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  background-color: rgba(168, 218, 220, 0.1);
+  border-radius: 8px;
+}
+
+.insight-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--deep-navy);
+}
+
+.config-hint-box {
+  padding: 24px;
+}
+
+.config-hint-box h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.config-hint-box p {
+  font-size: 13px;
+  color: var(--slate-blue);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.mini-cli-code {
+  background-color: var(--deep-navy);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mini-cli-code code {
+  color: var(--accent-teal);
+  font-family: monospace;
+  font-size: 12px;
+}
+
+/* Flagship Repository Details Page */
+.repo-detail-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.repo-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 30px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.repo-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background-color: rgba(69, 123, 157, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.repo-meta-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-row h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--deep-navy);
+}
+
+.inline-icon {
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.owner-meta {
+  font-size: 13px;
+  color: var(--slate-blue);
+  margin-top: 4px;
+}
+
+.owner-highlight {
+  font-weight: 700;
+  color: var(--deep-navy);
+}
+
+.header-right {
+  display: flex;
+  gap: 12px;
+}
+
+.danger-btn {
+  background-color: transparent !important;
+  border: 1.5px solid rgba(230, 57, 70, 0.3) !important;
+  color: var(--primary-red) !important;
+  box-shadow: none !important;
+}
+
+.danger-btn:hover {
+  background-color: var(--primary-red) !important;
+  color: var(--white) !important;
+  border-color: var(--primary-red) !important;
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.2) !important;
+}
+
+.repo-desc-card {
+  padding: 24px 30px;
+}
+
+.repo-desc-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.repo-desc-card p {
+  color: var(--slate-blue);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Stats grid */
+.repo-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  padding: 24px;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--slate-blue);
+  margin-bottom: 12px;
+}
+
+.card-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.card-body {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.card-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--deep-navy);
+  font-family: var(--font-heading);
+}
+
+.card-label {
+  font-size: 14px;
+  color: var(--slate-blue);
+  font-weight: 500;
+}
+
+.card-footer-text {
+  font-size: 11px;
+  color: var(--slate-blue);
+}
+
+.health-bar-bg {
+  width: 80px;
+  height: 6px;
+  background-color: rgba(29, 53, 87, 0.08);
+  border-radius: 3px;
+  margin-left: 12px;
+  align-self: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.health-bar-inner {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.8s ease;
+}
+
+.health-good { color: #2ec4b6; background-color: #2ec4b6; }
+.health-warn { color: #ffb703; background-color: #ffb703; }
+.health-danger { color: var(--primary-red); background-color: var(--primary-red); }
+
+/* Workspace tab switchers */
+.workspace-tabs-navigator {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid rgba(29, 53, 87, 0.06);
+  padding-bottom: 4px;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--slate-blue);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  color: var(--deep-navy);
+}
+
+.tab-active {
+  color: var(--primary-red) !important;
+}
+
+.tab-active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--primary-red);
+  border-radius: 2px;
+}
+
+/* Tab layout content grids */
+.tab-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 30px;
+}
+
+.workspace-main-column {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.card-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(29, 53, 87, 0.06);
+  padding-bottom: 12px;
+}
+
+.card-header-bar h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--deep-navy);
+}
+
+.count-tag {
+  background-color: rgba(29, 53, 87, 0.06);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* File explorer */
+.empty-files-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 12px;
+  text-align: center;
+}
+
+.placeholder-icon {
+  color: var(--accent-teal);
+  opacity: 0.6;
+}
+
+.placeholder-helper {
+  font-size: 12px;
+  color: var(--slate-blue);
+}
+
+.files-grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.file-grid-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(29, 53, 87, 0.08);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.file-grid-item:hover {
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--accent-teal);
+}
+
+.file-icon {
+  color: var(--slate-blue);
+}
+
+.file-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--deep-navy);
+  word-break: break-all;
+}
+
+.file-details {
+  font-size: 10px;
+  color: var(--slate-blue);
+  margin-top: 2px;
+}
+
+/* Evolution Milestones path */
+.milestones-vertical-timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 30px;
+}
+
+.milestones-vertical-timeline::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 6px;
+  width: 2px;
+  background-color: var(--accent-teal-light);
+}
+
+.milestone-timeline-item {
+  position: relative;
+  padding-bottom: 24px;
+}
+
+.milestone-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.milestone-node {
+  position: absolute;
+  top: 4px;
+  left: -24px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.birth-node { border: 2.5px solid #2ec4b6; color: #2ec4b6; }
+.code-node { border: 2.5px solid var(--slate-blue); color: var(--slate-blue); }
+.peak-node { border: 2.5px solid var(--primary-red); color: var(--primary-red); }
+
+.milestone-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.milestone-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.milestone-title {
+  font-weight: 700;
+  color: var(--deep-navy);
+}
+
+.milestone-time {
+  color: var(--slate-blue);
+  font-size: 11px;
+}
+
+.milestone-desc {
+  font-size: 13px;
+  color: var(--slate-blue);
+  line-height: 1.4;
+}
+
+.milestone-desc code {
+  background-color: rgba(29, 53, 87, 0.05);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* Commits version logs list */
+.commits-history-logs {
+  border-top: 1px solid rgba(29, 53, 87, 0.06);
+  padding-top: 24px;
+}
+
+.commits-history-logs .sub-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin-bottom: 16px;
+}
+
+.commits-logs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.log-row-item {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(29, 53, 87, 0.06);
+  border-radius: var(--radius-md);
+}
+
+.highlight-latest {
+  border-color: rgba(230, 57, 70, 0.2);
+  background-color: rgba(230, 57, 70, 0.02);
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.03);
+}
+
+.log-badge-wrapper {
+  color: var(--slate-blue);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.highlight-latest .log-badge-wrapper {
+  color: var(--primary-red);
+}
+
+.log-row-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.log-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.log-message {
+  font-weight: 600;
+  color: var(--deep-navy);
+}
+
+.log-date {
+  font-size: 11px;
+  color: var(--slate-blue);
+}
+
+.log-id {
+  font-size: 11px;
+  color: var(--slate-blue);
+}
+
+.log-id code {
+  background-color: rgba(29, 53, 87, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.log-files-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.log-file-tag {
+  font-size: 10px;
+  background-color: rgba(168, 218, 220, 0.2);
+  color: var(--deep-navy);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Sidebar guide and metadata */
+.workspace-sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.cli-guide-card h3, .metadata-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cli-instructions {
+  font-size: 12px;
+  color: var(--slate-blue);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.cli-terminal-shell {
+  background-color: var(--deep-navy);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.terminal-command-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.command-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.command-number {
+  font-size: 11px;
+  color: var(--accent-teal);
+  font-weight: 600;
+}
+
+.copy-btn-icon {
+  background: transparent;
+  border: none;
+  color: var(--accent-teal);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-btn-icon:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+}
+
+.copied-green-icon {
+  color: #2ec4b6 !important;
+}
+
+.command-box-code {
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 10px 12px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.command-box-code code {
+  color: var(--white);
+  font-family: monospace;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Meta lines listing */
+.meta-lines-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.meta-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.meta-label {
+  color: var(--slate-blue);
+}
+
+.meta-val {
+  font-weight: 700;
+  color: var(--deep-navy);
+}
+
+/* Kanban Workbench Layout */
+.kanban-workbench-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.kanban-board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.kanban-column {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.column-active {
+  border-top: 4px solid var(--primary-red) !important;
+}
+
+.column-resolved {
+  border-top: 4px solid #2ec4b6 !important;
+}
+
+.kanban-column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(29, 53, 87, 0.06);
+  padding-bottom: 12px;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.gap-6 {
+  gap: 6px;
+}
+
+.status-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-active { background-color: var(--primary-red); }
+.dot-resolved { background-color: #2ec4b6; }
+
+.kanban-column-header h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--deep-navy);
+}
+
+.column-count-badge {
+  background-color: rgba(29, 53, 87, 0.06);
+  color: var(--deep-navy);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.kanban-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 200px;
+}
+
+.kanban-card-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  color: var(--slate-blue);
+  font-size: 13px;
+  gap: 10px;
+  background-color: rgba(29, 53, 87, 0.02);
+  border: 1px dashed rgba(29, 53, 87, 0.08);
+  border-radius: var(--radius-md);
+}
+
+.empty-resolved-icon {
+  color: #2ec4b6;
+}
+
+.glass-card-nested {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.kanban-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kanban-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-teal);
+}
+
+.kanban-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--deep-navy);
+}
+
+.kanban-card-desc {
+  font-size: 12px;
+  color: var(--slate-blue);
+  line-height: 1.4;
+}
+
+.kanban-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+  border-top: 1px solid rgba(29, 53, 87, 0.05);
+  padding-top: 10px;
+}
+
+.kanban-action-btn {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 11px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-resolve {
+  background-color: rgba(46, 196, 182, 0.1);
+  color: #2ec4b6;
+}
+
+.action-resolve:hover {
+  background-color: #2ec4b6;
+  color: var(--white);
+}
+
+.action-reopen {
+  background-color: rgba(230, 57, 70, 0.08);
+  color: var(--primary-red);
+}
+
+.action-reopen:hover {
+  background-color: var(--primary-red);
+  color: var(--white);
+}
+
+.kanban-card-closed {
+  opacity: 0.8;
+  border-color: rgba(29, 53, 87, 0.05) !important;
+}
+
+.kanban-card-closed .kanban-card-title {
+  text-decoration: line-through;
+  color: var(--slate-blue);
+}
+
+/* Issue creator */
+.issue-creator-card {
+  padding: 30px;
+}
+
+.issue-creator-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin-bottom: 4px;
+}
+
+.creator-subtitle {
+  font-size: 13px;
+  color: var(--slate-blue);
+  margin-bottom: 24px;
+}
+
+.issue-create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Responsive Overrides */
+@media screen and (max-width: 1024px) {
+  .create-repo-wrapper {
+    grid-template-columns: 1fr;
+  }
+  
+  .tab-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .kanban-board {
+    grid-template-columns: 1fr;
+  }
+}
