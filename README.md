@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🐙 TrackChange
+#  TrackChange
 
 ### A full-stack GitHub replica with a custom version control system built from scratch.
 ### Git-like CLI · REST API · Real-time · AWS S3 Cloud Storage · React UI
